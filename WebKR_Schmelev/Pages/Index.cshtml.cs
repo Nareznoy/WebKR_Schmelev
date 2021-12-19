@@ -10,16 +10,18 @@ namespace WebKR_Schmelev.Pages
 {
     public class IndexModel : PageModel
     {
-        private readonly ILogger<IndexModel> _logger;
+        private readonly postgresContext _postgresContext;
 
-        public IndexModel(ILogger<IndexModel> logger)
+        public List<Test> Tests { get; set; }
+
+        public IndexModel(postgresContext db)
         {
-            _logger = logger;
+            _postgresContext = db;
         }
 
         public void OnGet()
         {
-
+            Tests = _postgresContext.Tests.ToList();
         }
     }
 }
