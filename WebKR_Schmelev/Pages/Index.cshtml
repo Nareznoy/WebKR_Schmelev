@@ -5,19 +5,30 @@
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-    <table>
-        <tr>
-            <th>test1</th>
-            <th>test2</th>
-        </tr>
-        <tbody>
-            @foreach (var test in Model.Tests)
-            {
-                <tr><td>@test.Test1</td><td>@test.Test2</td></tr>
-            }
-        </tbody>
+	<h1 class="display-4 mb-5">TESTING</h1>
+	<form method="POST" class="mb-3">
+		<input type="submit" class="btn btn-primary" asp-page-handler="ExecuteTest" value="Execute test"></input>
+	</form>
+	@if (Model.TimesPostgres != null)
+	{
+		<table class="table">
+			<tr>
+				<th>Text Length</th>
+				<th>Postgres Time</th>
+				<th>MSSql Time</th>
+			</tr>
+			<tbody>
+				
+					@for (int i = 0; i < Model.TimesPostgres.Count; i++)
+					{
+						<tr>
+							<td>@Model.TimesPostgres.ElementAt(i).Key</td>
+							<td>@Model.TimesPostgres.ElementAt(i).Value</td>
+							<td>@Model.TimesMSSql.ElementAt(i).Value</td>
+						</tr>
+					}
+			</tbody>
 
-    </table>
+		</table>
+	}
 </div>

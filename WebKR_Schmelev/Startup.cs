@@ -24,8 +24,10 @@ namespace WebKR_Schmelev
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            string connection = Configuration.GetConnectionString("DefaultConnection");
-            services.AddDbContext<postgresContext>(options => options.UseNpgsql(connection));
+            string connectionPostgres = Configuration.GetConnectionString("PostgresConnection");
+            services.AddDbContext<postgresContext>(options => options.UseNpgsql(connectionPostgres));
+            string connectionMSSql = Configuration.GetConnectionString("MSSqlConnection");
+            services.AddDbContext<mssqlContext>(options => options.UseSqlServer(connectionMSSql));
             services.AddRazorPages();
         }
 
