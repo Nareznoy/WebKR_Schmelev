@@ -7,334 +7,602 @@
 
 <h2>PostgreSQL</h2>
 <p>
-	PostgreSQL also known as Postgres, is a free and open-source relational database management system (RDBMS) emphasizing extensibility
-	and SQL compliance. It was originally named POSTGRES, referring to its origins as a successor to the Ingres database developed
-	at the University of California, Berkeley. In 1996, the project was renamed to PostgreSQL to reflect its support for SQL.
-	After a review sin 2007, the development team decided to keep the name PostgreSQL and the alias Postgres.
+	PostgreSQL — свободная объектно-реляционная система управления базами данных (СУБД).
+	Существует в реализациях для множества UNIX-подобных платформ, включая AIX, различные BSD-системы, HP-UX, IRIX, Linux, macOS,
+	Solaris/OpenSolaris, Tru64, QNX, а также для Microsoft Windows.
+	PostgreSQL базируется на языке SQL и поддерживает многие из возможностей стандарта SQL:2011.
+	В PostgreSQL версии 12 есть следующие ограничения:
 </p>
+<table class="table">
+
+	<tbody>
+	<tr>
+		<td>Максимальный размер базы данных</td>
+		<td>
+			Нет ограничений
+		</td>
+	</tr>
+	<tr>
+		<td>Максимальный размер таблицы</td>
+		<td>
+			32 Тбайт
+		</td>
+	</tr>
+	<tr>
+		<td>Максимальный размер поля</td>
+		<td>
+			1 Гбайт
+		</td>
+	</tr>
+	<tr>
+		<td>Максимум записей в таблице</td>
+		<td>
+			Ограничено размерами таблицы
+		</td>
+	</tr>
+	<tr>
+		<td>Максимум полей в записи</td>
+		<td>
+			250—1600, в зависимости от типов полей
+		</td>
+	</tr>
+	<tr>
+		<td>Максимум индексов в таблице</td>
+		<td>
+			Нет ограничений
+		</td>
+	</tr>
+	</tbody>
+</table>
 <p>
-	PostgreSQL features transactions with Atomicity, Consistency, Isolation, Durability (ACID) properties, automatically updatable views, 
-	materialized views, triggers, foreign keys, and stored procedures. It is designed to handle a range of workloads, from single machines 
-	to data warehouses or Web services with many concurrent users. It is the default database for macOS Server and is also available 
-	for Windows, Linux, FreeBSD, and OpenBSD.
+	Сильными сторонами PostgreSQL считаются:
 </p>
+<ul>
+	<li>высокопроизводительные и надёжные механизмы репликации;</li>
+	<li>высокопроизводительные и надёжные механизмы транзакций и репликации;</li>
+	<li>расширяемая система встроенных языков программирования: в стандартной поставке поддерживаются PL/pgSQL, PL/Perl, PL/Python и PL/Tcl; дополнительно можно использовать PL/Java, PL/PHP, PL/Py, PL/R, PL/Ruby, PL/Scheme, PL/sh и PL/V8, а также имеется поддержка загрузки модулей расширения на языке C;</li>
+	<li>наследование;</li>
+	<li>возможность индексирования геометрических (в частности, географических) объектов и наличие базирующегося на ней расширения PostGIS;</li>
+	<li>встроенная поддержка слабоструктурированных данных в формате JSON с возможностью их индексации;</li>
+</ul>
 
 <h2>Microsoft SQL Server</h2>
 <p>
-	Microsoft SQL Server is a relational database management system developed by Microsoft. As a database server, it is a software product 
-	with the primary function of storing and retrieving data as requested by other software applications—which may run either on the same 
-	computer or on another computer across a network (including the Internet). Microsoft markets at least a dozen different editions of 
-	Microsoft SQL Server, aimed at different audiences and for workloads ranging from small single-machine applications to large Internet-facing 
-	applications with many concurrent users.
+	Microsoft SQL Server — система управления реляционными базами данных (РСУБД), разработанная корпорацией Microsoft. 
+	Основной используемый язык запросов — Transact-SQL, создан совместно Microsoft и Sybase. Transact-SQL является реализацией 
+	стандарта ANSI/ISO по структурированному языку запросов (SQL) с расширениями. Используется для работы с базами данных размером 
+	от персональных до крупных баз данных масштаба предприятия; конкурирует с другими СУБД в этом сегменте рынка.
 </p>
 <p>
-	The protocol layer implements the external interface to SQL Server. All operations that can be invoked on SQL Server are communicated 
-	to it via a Microsoft-defined format, called Tabular Data Stream (TDS). TDS is an application layer protocol, used to transfer data 
-	between a database server and a client. Initially designed and developed by Sybase Inc. for their Sybase SQL Server relational database 
-	engine in 1984, and later by Microsoft in Microsoft SQL Server, TDS packets can be encased in other physical transport dependent protocols, 
-	including TCP/IP, named pipes, and shared memory. Consequently, access to SQL Server is available over these protocols. In addition, the 
-	SQL Server API is also exposed over web services.
+	Microsoft SQL Server в качестве языка запросов использует версию SQL, получившую название Transact-SQL (сокращённо T-SQL), 
+	являющуюся реализацией SQL-92 (стандарт ISO для SQL) с множественными расширениями. T-SQL позволяет использовать дополнительный 
+	синтаксис для хранимых процедур и обеспечивает поддержку транзакций (взаимодействие базы данных с управляющим приложением). 
+	Microsoft SQL Server и Sybase ASE для взаимодействия с сетью используют протокол уровня приложения под названием Tabular Data 
+	Stream (TDS, протокол передачи табличных данных). Протокол TDS также был реализован в проекте FreeTDS с целью обеспечить 
+	различным приложениям возможность взаимодействия с базами данных Microsoft SQL Server и Sybase.
+</p>
+<p>
+	В SQL Server 2005 встроена поддержка .NET Framework. Благодаря этому, хранимые процедуры БД могут быть написаны на любом 
+	языке платформы .NET, используя полный набор библиотек, доступных для .NET Framework, включая Common Type System (система 
+	обращения с типами данных в Microsoft .NET Framework). Однако, в отличие от других процессов, .NET Framework, будучи базисной 
+	системой для SQL Server 2005, выделяет дополнительную память и выстраивает средства управления SQL Server вместо того, чтобы 
+	использовать встроенные средства Windows. Это повышает производительность в сравнении с общими алгоритмами Windows, так как 
+	алгоритмы распределения ресурсов специально настроены для использования в структурах SQL Server.
 </p>
 
-<h2>Compare data types in PostgreSQL vs. MSSQL</h2>
+<h2>Сравнение PostgreSQL vs. MSSQL</h2>
 <table class="table">
-	<tbody>
-		<tr>
-			<th>
-				<p><strong>Data type</strong></p>
-			</th>
-			<th>
-				<p><strong>PostgreSQL</strong></p>
-			</th>
-			<th>
-				<p><strong>SQL Server</strong></p>
-			</th>
-		</tr>
-		<tr>
-			<td valign="top">
-				<p><strong><strong>64-bit integer</strong></strong></p>
-			</td>
-			<td valign="top">
-				<p><strong>BIGINT</strong></p>
-			</td>
-			<td valign="top">
-				<p><strong>BIGINT</strong></p>
-			</td>
-		</tr>
-		<tr>
-			<td valign="top">
-				<p><strong><strong>Fixed length byte string</strong></strong></p>
-			</td>
-			<td valign="top">
-				<p><strong>BYTEA</strong></p>
-			</td>
-			<td valign="top">
-				<p><strong>BINARY(n)</strong></p>
-			</td>
-		</tr>
-		<tr>
-			<td valign="top">
-				<p><strong><strong>1, 0 or NULL</strong></strong></p>
-			</td>
-			<td valign="top">
-				<p><strong>BOOLEAN</strong></p>
-			</td>
-			<td valign="top">
-				<p><strong>BIT</strong></p>
-			</td>
-		</tr>
-		<tr>
-			<td valign="top">
-				<p><strong><strong>Fixed length char string, 1 &lt;= n &lt;= 8000</strong></strong></p>
-			</td>
-			<td valign="top">
-				<p><strong>CHAR(n)</strong></p>
-			</td>
-			<td valign="top">
-				<p><strong>CHAR(n)</strong></p>
-			</td>
-		</tr>
-		<tr>
-			<td valign="top">
-				<p><strong><strong>Variable length char string, 1 &lt;= n &lt;= 8000</strong></strong></p>
-			</td>
-			<td valign="top">
-				<p><strong>VARCHAR(n)</strong></p>
-			</td>
-			<td valign="top">
-				<p><strong>VARCHAR(n)</strong></p>
-			</td>
-		</tr>
-		<tr>
-			<td valign="top">
-				<p><strong><strong>Variable length char string, &lt;= 2GB</strong></strong></p>
-			</td>
-			<td valign="top">
-				<p><strong>TEXT</strong></p>
-			</td>
-			<td valign="top">
-				<p><strong>VARCHAR(max)</strong></p>
-			</td>
-		</tr>
-		<tr>
-			<td valign="top">
-				<p><strong><strong>Variable length byte string , 1 &lt;= n &lt;= 8000</strong></strong></p>
-			</td>
-			<td valign="top">
-				<p><strong>BYTEA</strong></p>
-			</td>
-			<td valign="top">
-				<p><strong>VARBINARY(n)</strong></p>
-			</td>
-		</tr>
-		<tr>
-			<td valign="top">
-				<p><strong><strong>Variable length byte string , &lt;= 2GB</strong></strong></p>
-			</td>
-			<td valign="top">
-				<p><strong>BYTEA</strong></p>
-			</td>
-			<td valign="top">
-				<p><strong>VARBINARY(max)</strong></p>
-			</td>
-		</tr>
-		<tr>
-			<td valign="top">
-				<p><strong><strong>Variable length Unicode UCS-2 string</strong></strong></p>
-			</td>
-			<td valign="top">
-				<p><strong>VARCHAR(n)</strong></p>
-			</td>
-			<td valign="top">
-				<p><strong>NVARCHAR(n)</strong></p>
-			</td>
-		</tr>
-		<tr>
-			<td valign="top">
-				<p><strong><strong>Variable length Unicode UCS-2 data, &lt;= 2GB</strong></strong></p>
-			</td>
-			<td valign="top">
-				<p><strong>TEXT</strong></p>
-			</td>
-			<td valign="top">
-				<p><strong>NVARCHAR(max)</strong></p>
-			</td>
-		</tr>
-		<tr>
-			<td valign="top">
-				<p><strong><strong>Variable length character data, &lt;= 2GB</strong></strong></p>
-			</td>
-			<td valign="top">
-				<p><strong>TEXT</strong></p>
-			</td>
-			<td valign="top">
-				<p><strong>TEXT</strong></p>
-			</td>
-		</tr>
-		<tr>
-			<td valign="top">
-				<p><strong><strong>Variable length Unicode UCS-2 data, &lt;= 2GB</strong></strong></p>
-			</td>
-			<td valign="top">
-				<p><strong>TEXT</strong></p>
-			</td>
-			<td valign="top">
-				<p><strong>NTEXT</strong></p>
-			</td>
-		</tr>
-		<tr>
-			<td valign="top">
-				<p><strong><strong>Double precision floating point number</strong></strong></p>
-			</td>
-			<td valign="top">
-				<p><strong>DOUBLE PRECISION</strong></p>
-			</td>
-			<td valign="top">
-				<p><strong>DOUBLE PRECISION</strong></p>
-			</td>
-		</tr>
-		<tr>
-			<td valign="top">
-				<p><strong><strong>Floating point number</strong></strong></p>
-			</td>
-			<td valign="top">
-				<p><strong>DOUBLE PRECISION</strong></p>
-			</td>
-			<td valign="top">
-				<p><strong>FLOAT(p)</strong></p>
-			</td>
-		</tr>
-		<tr>
-			<td valign="top">
-				<p><strong><strong>32 bit integer</strong></strong></p>
-			</td>
-			<td valign="top">
-				<p><strong>INTEGER</strong></p>
-			</td>
-			<td valign="top">
-				<p><strong>INTEGER</strong></p>
-			</td>
-		</tr>
-		<tr>
-			<td valign="top">
-				<p><strong><strong>Fixed point number</strong></strong></p>
-			</td>
-			<td valign="top">
-				<p><strong>NUMERIC(p,s)</strong></p>
-			</td>
-			<td valign="top">
-				<p><strong>NUMERIC(p,s)</strong></p>
-			</td>
-		</tr>
-		<tr>
-			<td valign="top">
-				<p><strong><strong>Date includes year, month, and day</strong></strong></p>
-			</td>
-			<td valign="top">
-				<p><strong>DATE</strong></p>
-			</td>
-			<td valign="top">
-				<p><strong>DATE</strong></p>
-			</td>
-		</tr>
-		<tr>
-			<td valign="top">
-				<p><strong><strong>Date and time with fractional seconds</strong></strong></p>
-			</td>
-			<td valign="top">
-				<p><strong>TIMESTAMP(p)</strong></p>
-			</td>
-			<td valign="top">
-				<p><strong>DATETIME, DATETIME2(p)</strong></p>
-			</td>
-		</tr>
-		<tr>
-			<td valign="top">
-				<p><strong><strong>Date and time with time zone</strong></strong></p>
-			</td>
-			<td valign="top">
-				<p><strong>TIMESTAMP(p) WITH TIME ZONE</strong></p>
-			</td>
-			<td valign="top">
-				<p><strong>DATETIMEOFFSET(p)</strong></p>
-			</td>
-		</tr>
-		<tr>
-			<td valign="top">
-				<p><strong><strong>Date and time</strong></strong></p>
-			</td>
-			<td valign="top">
-				<p><strong>TIMESTAMP(0)</strong></p>
-			</td>
-			<td valign="top">
-				<p><strong>SMALLDATETIME</strong></p>
-			</td>
-		</tr>
-		<tr>
-			<td valign="top">
-				<p><strong><strong>Unsigned integer, 0 to 255 (8 bit)</strong></strong></p>
-			</td>
-			<td valign="top">
-				<p><strong>SMALLINT</strong></p>
-			</td>
-			<td valign="top">
-				<p><strong>TINYINT</strong></p>
-			</td>
-		</tr>
-		<tr>
-			<td valign="top">
-				<p><strong><strong>UUID (16 byte)</strong></strong></p>
-			</td>
-			<td valign="top">
-				<p><strong>CHAR(16)</strong></p>
-			</td>
-			<td valign="top">
-				<p><strong>UNIQUEIDENTIFIER</strong></p>
-			</td>
-		</tr>
-		<tr>
-			<td valign="top">
-				<p><strong><strong>Automatically updated binary data</strong></strong></p>
-			</td>
-			<td valign="top">
-				<p><strong>BYTEA</strong></p>
-			</td>
-			<td valign="top">
-				<p><strong>ROWVERSION</strong></p>
-			</td>
-		</tr>
-		<tr>
-			<td valign="top">
-				<p><strong><strong>Currency amount (32 bit)</strong></strong></p>
-			</td>
-			<td valign="top">
-				<p><strong>MONEY</strong></p>
-			</td>
-			<td valign="top">
-				<p><strong>SMALLMONEY</strong></p>
-			</td>
-		</tr>
-		<tr>
-			<td valign="top">
-				<p><strong><strong>Variable length binary data, &lt;= 2GB</strong></strong></p>
-			</td>
-			<td valign="top">
-				<p><strong>BYTEA</strong></p>
-			</td>
-			<td valign="top">
-				<p><strong>IMAGE</strong></p>
-			</td>
-		</tr>
-		<tr>
-			<td valign="top">
-				<p><strong><strong>Geometric types</strong></strong></p>
-			</td>
-			<td valign="top">
-				<p><strong>POINT, LINE, LSEG, BOX, PATH, POLYGON, CIRCLE</strong></p>
-			</td>
-			<td valign="top">
-				<p><strong>GEOMETRY</strong></p>
-			</td>
-		</tr>
-	</tbody>
+<tbody>
+<tr>
+	<th>
+		<p>
+			<strong>Data type</strong>
+		</p>
+	</th>
+	<th>
+		<p>
+			<strong>PostgreSQL</strong>
+		</p>
+	</th>
+	<th>
+		<p>
+			<strong>SQL Server</strong>
+		</p>
+	</th>
+</tr>
+<tr>
+	<td valign="top">
+		<p>
+			<strong>
+				<strong>64-bit integer</strong>
+			</strong>
+		</p>
+	</td>
+	<td valign="top">
+		<p>
+			<strong>BIGINT</strong>
+		</p>
+	</td>
+	<td valign="top">
+		<p>
+			<strong>BIGINT</strong>
+		</p>
+	</td>
+</tr>
+<tr>
+	<td valign="top">
+		<p>
+			<strong>
+				<strong>Fixed length byte string</strong>
+			</strong>
+		</p>
+	</td>
+	<td valign="top">
+		<p>
+			<strong>BYTEA</strong>
+		</p>
+	</td>
+	<td valign="top">
+		<p>
+			<strong>BINARY(n)</strong>
+		</p>
+	</td>
+</tr>
+<tr>
+	<td valign="top">
+		<p>
+			<strong>
+				<strong>1, 0 or NULL</strong>
+			</strong>
+		</p>
+	</td>
+	<td valign="top">
+		<p>
+			<strong>BOOLEAN</strong>
+		</p>
+	</td>
+	<td valign="top">
+		<p>
+			<strong>BIT</strong>
+		</p>
+	</td>
+</tr>
+<tr>
+	<td valign="top">
+		<p>
+			<strong>
+				<strong>Fixed length char string, 1 &lt;= n &lt;= 8000</strong>
+			</strong>
+		</p>
+	</td>
+	<td valign="top">
+		<p>
+			<strong>CHAR(n)</strong>
+		</p>
+	</td>
+	<td valign="top">
+		<p>
+			<strong>CHAR(n)</strong>
+		</p>
+	</td>
+</tr>
+<tr>
+	<td valign="top">
+		<p>
+			<strong>
+				<strong>Variable length char string, 1 &lt;= n &lt;= 8000</strong>
+			</strong>
+		</p>
+	</td>
+	<td valign="top">
+		<p>
+			<strong>VARCHAR(n)</strong>
+		</p>
+	</td>
+	<td valign="top">
+		<p>
+			<strong>VARCHAR(n)</strong>
+		</p>
+	</td>
+</tr>
+<tr>
+	<td valign="top">
+		<p>
+			<strong>
+				<strong>Variable length char string, &lt;= 2GB</strong>
+			</strong>
+		</p>
+	</td>
+	<td valign="top">
+		<p>
+			<strong>TEXT</strong>
+		</p>
+	</td>
+	<td valign="top">
+		<p>
+			<strong>VARCHAR(max)</strong>
+		</p>
+	</td>
+</tr>
+<tr>
+	<td valign="top">
+		<p>
+			<strong>
+				<strong>Variable length byte string , 1 &lt;= n &lt;= 8000</strong>
+			</strong>
+		</p>
+	</td>
+	<td valign="top">
+		<p>
+			<strong>BYTEA</strong>
+		</p>
+	</td>
+	<td valign="top">
+		<p>
+			<strong>VARBINARY(n)</strong>
+		</p>
+	</td>
+</tr>
+<tr>
+	<td valign="top">
+		<p>
+			<strong>
+				<strong>Variable length byte string , &lt;= 2GB</strong>
+			</strong>
+		</p>
+	</td>
+	<td valign="top">
+		<p>
+			<strong>BYTEA</strong>
+		</p>
+	</td>
+	<td valign="top">
+		<p>
+			<strong>VARBINARY(max)</strong>
+		</p>
+	</td>
+</tr>
+<tr>
+	<td valign="top">
+		<p>
+			<strong>
+				<strong>Variable length Unicode UCS-2 string</strong>
+			</strong>
+		</p>
+	</td>
+	<td valign="top">
+		<p>
+			<strong>VARCHAR(n)</strong>
+		</p>
+	</td>
+	<td valign="top">
+		<p>
+			<strong>NVARCHAR(n)</strong>
+		</p>
+	</td>
+</tr>
+<tr>
+	<td valign="top">
+		<p>
+			<strong>
+				<strong>Variable length Unicode UCS-2 data, &lt;= 2GB</strong>
+			</strong>
+		</p>
+	</td>
+	<td valign="top">
+		<p>
+			<strong>TEXT</strong>
+		</p>
+	</td>
+	<td valign="top">
+		<p>
+			<strong>NVARCHAR(max)</strong>
+		</p>
+	</td>
+</tr>
+<tr>
+	<td valign="top">
+		<p>
+			<strong>
+				<strong>Variable length character data, &lt;= 2GB</strong>
+			</strong>
+		</p>
+	</td>
+	<td valign="top">
+		<p>
+			<strong>TEXT</strong>
+		</p>
+	</td>
+	<td valign="top">
+		<p>
+			<strong>TEXT</strong>
+		</p>
+	</td>
+</tr>
+<tr>
+	<td valign="top">
+		<p>
+			<strong>
+				<strong>Variable length Unicode UCS-2 data, &lt;= 2GB</strong>
+			</strong>
+		</p>
+	</td>
+	<td valign="top">
+		<p>
+			<strong>TEXT</strong>
+		</p>
+	</td>
+	<td valign="top">
+		<p>
+			<strong>NTEXT</strong>
+		</p>
+	</td>
+</tr>
+<tr>
+	<td valign="top">
+		<p>
+			<strong>
+				<strong>Double precision floating point number</strong>
+			</strong>
+		</p>
+	</td>
+	<td valign="top">
+		<p>
+			<strong>DOUBLE PRECISION</strong>
+		</p>
+	</td>
+	<td valign="top">
+		<p>
+			<strong>DOUBLE PRECISION</strong>
+		</p>
+	</td>
+</tr>
+<tr>
+	<td valign="top">
+		<p>
+			<strong>
+				<strong>Floating point number</strong>
+			</strong>
+		</p>
+	</td>
+	<td valign="top">
+		<p>
+			<strong>DOUBLE PRECISION</strong>
+		</p>
+	</td>
+	<td valign="top">
+		<p>
+			<strong>FLOAT(p)</strong>
+		</p>
+	</td>
+</tr>
+<tr>
+	<td valign="top">
+		<p>
+			<strong>
+				<strong>32 bit integer</strong>
+			</strong>
+		</p>
+	</td>
+	<td valign="top">
+		<p>
+			<strong>INTEGER</strong>
+		</p>
+	</td>
+	<td valign="top">
+		<p>
+			<strong>INTEGER</strong>
+		</p>
+	</td>
+</tr>
+<tr>
+	<td valign="top">
+		<p>
+			<strong>
+				<strong>Fixed point number</strong>
+			</strong>
+		</p>
+	</td>
+	<td valign="top">
+		<p>
+			<strong>NUMERIC(p,s)</strong>
+		</p>
+	</td>
+	<td valign="top">
+		<p>
+			<strong>NUMERIC(p,s)</strong>
+		</p>
+	</td>
+</tr>
+<tr>
+	<td valign="top">
+		<p>
+			<strong>
+				<strong>Date includes year, month, and day</strong>
+			</strong>
+		</p>
+	</td>
+	<td valign="top">
+		<p>
+			<strong>DATE</strong>
+		</p>
+	</td>
+	<td valign="top">
+		<p>
+			<strong>DATE</strong>
+		</p>
+	</td>
+</tr>
+<tr>
+	<td valign="top">
+		<p>
+			<strong>
+				<strong>Date and time with fractional seconds</strong>
+			</strong>
+		</p>
+	</td>
+	<td valign="top">
+		<p>
+			<strong>TIMESTAMP(p)</strong>
+		</p>
+	</td>
+	<td valign="top">
+		<p>
+			<strong>DATETIME, DATETIME2(p)</strong>
+		</p>
+	</td>
+</tr>
+<tr>
+	<td valign="top">
+		<p>
+			<strong>
+				<strong>Date and time with time zone</strong>
+			</strong>
+		</p>
+	</td>
+	<td valign="top">
+		<p>
+			<strong>TIMESTAMP(p) WITH TIME ZONE</strong>
+		</p>
+	</td>
+	<td valign="top">
+		<p>
+			<strong>DATETIMEOFFSET(p)</strong>
+		</p>
+	</td>
+</tr>
+<tr>
+	<td valign="top">
+		<p>
+			<strong>
+				<strong>Date and time</strong>
+			</strong>
+		</p>
+	</td>
+	<td valign="top">
+		<p>
+			<strong>TIMESTAMP(0)</strong>
+		</p>
+	</td>
+	<td valign="top">
+		<p>
+			<strong>SMALLDATETIME</strong>
+		</p>
+	</td>
+</tr>
+<tr>
+	<td valign="top">
+		<p>
+			<strong>
+				<strong>Unsigned integer, 0 to 255 (8 bit)</strong>
+			</strong>
+		</p>
+	</td>
+	<td valign="top">
+		<p>
+			<strong>SMALLINT</strong>
+		</p>
+	</td>
+	<td valign="top">
+		<p>
+			<strong>TINYINT</strong>
+		</p>
+	</td>
+</tr>
+<tr>
+	<td valign="top">
+		<p>
+			<strong>
+				<strong>UUID (16 byte)</strong>
+			</strong>
+		</p>
+	</td>
+	<td valign="top">
+		<p>
+			<strong>CHAR(16)</strong>
+		</p>
+	</td>
+	<td valign="top">
+		<p>
+			<strong>UNIQUEIDENTIFIER</strong>
+		</p>
+	</td>
+</tr>
+<tr>
+	<td valign="top">
+		<p>
+			<strong>
+				<strong>Automatically updated binary data</strong>
+			</strong>
+		</p>
+	</td>
+	<td valign="top">
+		<p>
+			<strong>BYTEA</strong>
+		</p>
+	</td>
+	<td valign="top">
+		<p>
+			<strong>ROWVERSION</strong>
+		</p>
+	</td>
+</tr>
+<tr>
+	<td valign="top">
+		<p>
+			<strong>
+				<strong>Currency amount (32 bit)</strong>
+			</strong>
+		</p>
+	</td>
+	<td valign="top">
+		<p>
+			<strong>MONEY</strong>
+		</p>
+	</td>
+	<td valign="top">
+		<p>
+			<strong>SMALLMONEY</strong>
+		</p>
+	</td>
+</tr>
+<tr>
+	<td valign="top">
+		<p>
+			<strong>
+				<strong>Variable length binary data, &lt;= 2GB</strong>
+			</strong>
+		</p>
+	</td>
+	<td valign="top">
+		<p>
+			<strong>BYTEA</strong>
+		</p>
+	</td>
+	<td valign="top">
+		<p>
+			<strong>IMAGE</strong>
+		</p>
+	</td>
+</tr>
+<tr>
+	<td valign="top">
+		<p>
+			<strong>
+				<strong>Geometric types</strong>
+			</strong>
+		</p>
+	</td>
+	<td valign="top">
+		<p>
+			<strong>POINT, LINE, LSEG, BOX, PATH, POLYGON, CIRCLE</strong>
+		</p>
+	</td>
+	<td valign="top">
+		<p>
+			<strong>GEOMETRY</strong>
+		</p>
+	</td>
+</tr>
+</tbody>
 </table>

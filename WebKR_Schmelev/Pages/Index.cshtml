@@ -1,32 +1,33 @@
 ﻿@page
 @model IndexModel
 @{
-    ViewData["Title"] = "Home page";
+    ViewData["Title"] = "Тест";
 }
 
 <div class="text-center">
-	<h1 class="display-4 mb-5">TESTING</h1>
+	<h1 class="display-4 mb-5">ТЕСТИРОВАНИЕ</h1>
 	<form method="POST" class="mb-3">
-		<input type="submit" class="btn btn-primary" asp-page-handler="ExecuteTest" value="Execute test"></input>
+		<input type="submit" class="btn btn-primary" asp-page-handler="ExecuteTest" value="Начать тест"></input>
 	</form>
 	@if (Model.TimesPostgres != null)
 	{
-		<table class="table">
+		<h2 class="display-4 mb-3">Результаты тестирования</h2>
+		<table class="table table-striped thead-dark table-bordered">
 			<tr>
-				<th>Text Length</th>
-				<th>Postgres Time</th>
-				<th>MSSql Time</th>
+				<th>Размер поля, байт</th>
+				<th>Время PostgreSQL</th>
+				<th>Время MS SQL Server</th>
 			</tr>
 			<tbody>
-				
-					@for (int i = 0; i < Model.TimesPostgres.Count; i++)
-					{
-						<tr>
-							<td>@Model.TimesPostgres.ElementAt(i).Key</td>
-							<td>@Model.TimesPostgres.ElementAt(i).Value</td>
-							<td>@Model.TimesMSSql.ElementAt(i).Value</td>
-						</tr>
-					}
+
+				@for (int i = 0; i < Model.TimesPostgres.Count; i++)
+				{
+					<tr>
+						<td>@Model.TimesPostgres.ElementAt(i).Key</td>
+						<td>@Model.TimesPostgres.ElementAt(i).Value</td>
+						<td>@Model.TimesMSSql.ElementAt(i).Value</td>
+					</tr>
+				}
 			</tbody>
 
 		</table>

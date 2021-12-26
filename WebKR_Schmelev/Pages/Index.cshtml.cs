@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Security.Cryptography;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace WebKR_Schmelev.Pages
@@ -39,15 +40,16 @@ namespace WebKR_Schmelev.Pages
             Dictionary<int, TimeSpan> outputTimes = new Dictionary<int, TimeSpan>();
             for (int i = 1000; i < 1000000000; i *= 10)
             {
+                String testString = get_unique_string(i);
                 Stopwatch stopwatch = new Stopwatch();
-                Test test = new Test { Test1 = DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss:fff"), Test2 = get_unique_string(i) };
+                Test test = new Test { Test1 = DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss:fff"), Test2 = testString };
 
                 stopwatch.Start();
                 _postgresContext.Tests.Add(test);
                 _postgresContext.SaveChanges();
                 stopwatch.Stop();
 
-                outputTimes.Add(i, stopwatch.Elapsed);
+                outputTimes.Add(Encoding.UTF8.GetByteCount(testString), stopwatch.Elapsed);
             }
             return outputTimes;
         }
@@ -57,15 +59,16 @@ namespace WebKR_Schmelev.Pages
             Dictionary<int, TimeSpan> outputTimes = new Dictionary<int, TimeSpan>();
             for (int i = 1000; i < 1000000000; i *= 10)
             {
+                String testString = get_unique_string(i);
                 Stopwatch stopwatch = new Stopwatch();
-                MssqlTest test = new MssqlTest { TestId = DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss:fff"), TestText = get_unique_string(i) };
+                MssqlTest test = new MssqlTest { TestId = DateTime.Now.ToString("dd.MM.yyyy hh:mm:ss:fff"), TestText = testString };
 
                 stopwatch.Start();
                 _mssqlContext.MssqlTests.Add(test);
                 _mssqlContext.SaveChanges();
                 stopwatch.Stop();
 
-                outputTimes.Add(i, stopwatch.Elapsed);
+                outputTimes.Add(Encoding.UTF8.GetByteCount(testString), stopwatch.Elapsed);
             }
             return outputTimes;
         }

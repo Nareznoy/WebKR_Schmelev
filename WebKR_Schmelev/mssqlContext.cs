@@ -1,26 +1,17 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
-#nullable disable
-
 namespace WebKR_Schmelev
 {
     public partial class mssqlContext : DbContext
     {
-        public mssqlContext()
-        {
-        }
+        public mssqlContext() { }
 
         public mssqlContext(DbContextOptions<mssqlContext> options)
-            : base(options)
-        {
-        }
+            : base(options) { }
 
         public virtual DbSet<MssqlTest> MssqlTests { get; set; }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-
-        }
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) { }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
